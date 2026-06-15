@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useState } from 'react'
+import { productBadge } from '#/components/DashboardView'
 import { reportsApi } from '#/lib/api'
 import { formatGhs, formatWeek } from '#/lib/format'
 import type { ReportJson } from '#/lib/types'
@@ -88,18 +89,21 @@ function PrintReportPage() {
                 <th className="py-2">Product</th>
                 <th className="py-2 text-right">Sold</th>
                 <th className="py-2 text-right">Revenue</th>
-                <th className="py-2 text-right">Percent kept</th>
+                <th className="py-2 text-right">Kept per item</th>
               </tr>
             </thead>
             <tbody>
-              {products.map((p) => (
+              {products.map((p) => {
+                const badge = productBadge(p)
+                return (
                 <tr key={p.name} className="border-b border-[var(--border)]">
                   <td className="py-2 font-semibold">{p.name}</td>
                   <td className="py-2 text-right">{p.unitsSold ?? '—'}</td>
                   <td className="py-2 text-right text-[var(--green-mid)]">GHS {p.revenue.toFixed(2)}</td>
-                  <td className="py-2 text-right">{Math.round(p.margin)}%</td>
+                  <td className="py-2 text-right">{badge.text}</td>
                 </tr>
-              ))}
+                )
+              })}
             </tbody>
           </table>
         </div>

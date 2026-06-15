@@ -15,7 +15,7 @@ const LEARN_QUESTIONS = [
   'Why is it bad to depend on just one product?',
   'What does break-even mean?',
   'How do I know if my business is growing?',
-  'What is a good profit margin?',
+  'How much should I keep from each sale?',
 ]
 
 export const Route = createFileRoute('/ask')({
